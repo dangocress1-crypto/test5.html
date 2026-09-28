@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mamiepoko Store - Web Directory</title>
+    
+    <!-- Google Fonts & Tailwind CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#0B0A0F',
+                        'dark-card': '#14121A',
+                        'accent-primary': '#E0A96D',
+                        'accent-orange': '#FF8C42',
+                        'accent-darkred': '#8B0000',
+                        'accent-white': '#F5F5F7'
+                    },
+                    fontFamily: {
+                        sans: ['Kanit', 'sans-serif'],
+                        eng: ['Cinzel', 'serif']
+                    },
+                    boxShadow: {
+                        'glow-orange': '0 0 25px -5px rgba(255, 140, 66, 0.3)',
+                        'glow-darkred': '0 0 25px -5px rgba(139, 0, 0, 0.4)',
+                        'glow-primary': '0 0 25px -5px rgba(224, 169, 109, 0.3)'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #0B0A0F;
+            color: #F5F5F7;
+            font-family: 'Kanit', sans-serif;
+            overflow-x: hidden;
+        }
+        .eng-heading {
+            font-family: 'Cinzel', serif;
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #FF8C42 0%, #E0A96D 50%, #F5F5F7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .modal {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: rgba(224, 169, 109, 0.3);
+            border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: rgba(224, 169, 109, 0.6);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between items-center p-4 sm:p-6 antialiased">
+
+    <!-- Background Decoration -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-accent-orange/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-accent-darkred/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Master Wrapper -->
+    <div class="w-full max-w-md mx-auto relative z-10 flex flex-col min-h-screen justify-between">
+        
+        <main class="w-full flex-grow flex flex-col items-center">
+            
+            <!-- Header Section -->
+            <header class="text-center mt-6 mb-8 w-full">
+                <div class="inline-block p-1 rounded-full bg-gradient-to-r from-accent-orange via-accent-primary to-accent-darkred mb-4 shadow-glow-primary">
+                    <div class="bg-dark-bg p-3 rounded-full">
+                        <svg class="w-8 h-8 text-accent-orange" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="text-3xl font-bold eng-heading text-gradient tracking-wider">MAMIEPOKO STORE</h1>
+                <p class="text-sm text-accent-white/70 font-light mt-1 tracking-wide">ศูนย์รวมเว็บไซต์และผลงานทั้งหมด</p>
+            </header>
+
+            <!-- Main Menu Buttons -->
+            <div class="w-full space-y-4 mb-8">
+                
+                <!-- Button: โทนสดใส -->
+                <button onclick="openModal('modal-sodsai')" class="w-full p-4 bg-dark-card hover:bg-dark-card/80 border border-accent-orange/40 hover:border-accent-orange rounded-2xl flex items-center justify-between transition-all duration-300 shadow-glow-orange group">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-accent-orange/10 text-accent-orange group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.758a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"></path></svg>
+                        </div>
+                        <div class="text-left">
+                            <span class="block text-lg font-medium text-accent-white">โทนสดใส</span>
+                            <span class="block text-xs text-accent-white/50 font-light">รวมเว็บไซต์สไตล์สดใส น่ารัก (4 รายการ)</span>
+                        </div>
+                    </div>
+                    <svg class="w-5 h-5 text-accent-orange/70 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                </button>
+
+                <!-- Button: โทนมืด -->
+                <button onclick="openModal('modal-dark')" class="w-full p-4 bg-dark-card hover:bg-dark-card/80 border border-accent-primary/40 hover:border-accent-primary rounded-2xl flex items-center justify-between transition-all duration-300 shadow-glow-darkred group">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-accent-darkred/30 text-accent-primary group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        </div>
+                        <div class="text-left">
+                            <span class="block text-lg font-medium text-accent-white">โทนมืด</span>
+                            <span class="block text-xs text-accent-white/50 font-light">รวมเว็บไซต์สไตล์ดาร์ก เท่เรียบหรู (8 รายการ)</span>
+                        </div>
+                    </div>
+                    <svg class="w-5 h-5 text-accent-primary/70 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                </button>
+
+                <!-- Button: โทนพาสเทล -->
+                <button onclick="openModal('modal-pastel')" class="w-full p-4 bg-dark-card hover:bg-dark-card/80 border border-accent-white/30 hover:border-accent-white/60 rounded-2xl flex items-center justify-between transition-all duration-300 shadow-glow-primary group">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-accent-primary/10 text-accent-white group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                        </div>
+                        <div class="text-left">
+                            <span class="block text-lg font-medium text-accent-white">โทนพาสเทล</span>
+                            <span class="block text-xs text-accent-white/50 font-light">รวมเว็บไซต์สไตล์พาสเทล ละมุนตา (13 รายการ)</span>
+                        </div>
+                    </div>
+                    <svg class="w-5 h-5 text-accent-white/70 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                </button>
+
+            </div>
+
+            <!-- Footer Section -->
+            <footer class="w-full py-6 text-center border-t border-white/5 mt-auto">
+                <div class="flex justify-center items-center gap-3 mb-2">
+                    <svg class="w-4 h-4 text-accent-orange" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z"/></svg>
+                    <span class="eng-heading text-xl text-gradient">Mamiepoko Store</span>
+                    <svg class="w-4 h-4 text-accent-orange" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z"/></svg>
+                </div>
+                <p class="text-[13px] text-accent-white/50 font-light tracking-wide mt-2">© 2026 Mamiepoko Store. All rights reserved.</p>
+                <p class="text-[11px] text-accent-primary/60 mt-1.5 italic eng-heading tracking-widest">Crafted with magic</p>
+            </footer>
+
+        </main>
+
+    </div> <!-- End of Master Wrapper -->
+
+    <!-- Modals Section -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 modal flex justify-center items-center p-4" onclick="closeAllModals(event)">
+        
+        <!-- Modal: โทนสดใส -->
+        <div id="modal-sodsai" class="modal-content hidden w-full max-w-sm bg-dark-card border border-accent-orange/50 rounded-3xl overflow-hidden shadow-glow-orange relative" onclick="event.stopPropagation()">
+            <div class="bg-gradient-to-r from-accent-primary/20 to-accent-orange/30 p-5 border-b border-accent-orange/30 flex justify-between items-center">
+                <h3 class="text-xl text-accent-orange flex items-center gap-2 font-medium">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.758a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"></path></svg>
+                    โทนสดใส
+                </h3>
+                <button onclick="closeAllModals()" class="text-white hover:text-accent-primary transition-colors"><svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
+            </div>
+            <div class="p-5 space-y-3 max-h-[60vh] overflow-y-auto">
+                <a href="https://jeans.cozyw75.workers.dev/" target="_blank" class="block w-full p-4 bg-black/60 hover:bg-accent-orange/20 border border-white/10 hover:border-accent-orange/60 rounded-xl text-[15px] text-center transition-all">V.1 Jeans</a>
+                <a href="https://playing.cozyw75.workers.dev/" target="_blank" class="block w-full p-4 bg-black/60 hover:bg-accent-orange/20 border border-white/10 hover:border-accent-orange/60 rounded-xl text-[15px] text-center transition-all">V.2 Playing</a>
+                <a href="https://note.cozyw75.workers.dev/" target="_blank" class="block w-full p-4 bg-black/60 hover:bg-accent-orange/20 border border-white/10 hover:border-accent-orange/60 rounded-xl text-[15px] text-center transition-all">V.3 Note</a>
+                <a href="https://sodsai.cozyw75.workers.dev/" target="_blank" class="block w-full p-4 bg-black/60 hover:bg-accent-orange/20 border border-white/10 hover:border-accent-orange/60 rounded-xl text-[15px] text-center transition-all">V.4 Sodsai</a>
+            </div>
+        </div>
+
+        <!-- Modal: โทนมืด -->
+        <div id="modal-dark" class="modal-content hidden w-full max-w-sm bg-dark-card border border-accent-primary/50 rounded-3xl overflow-hidden shadow-glow-darkred relative" onclick="event.stopPropagation()">
+             <div class="bg-gradient-to-r from-dark-bg to-accent-darkred/40 p-5 border-b border-accent-darkred/50 flex justify-between items-center">
+                <h3 class="text-xl text-accent-primary flex items-center gap-2 font-medium">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    โทนมืด
+                </h3>
+                <button onclick="closeAllModals()" class="text-white hover:text-accent-orange transition-colors"><svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
+            </div>
+            <div class="p-5 space-y-3 max-h-[60vh] overflow-y-auto grid grid-cols-2 gap-3">
+                <a href="https://pinkdark.cozyw75.workers.dev/" target="_blank" class="block w-full p-3 bg-black/60 hover:bg-accent-primary/20 border border-white/10 hover:border-accent-primary/60 rounded-xl text-[14px] text-center transition-all">V.1 Pinkdark</a>
+                <a href="https://pinkblue.cozyw75.workers.dev/" target="_blank" class="block w-full p-3 bg-black/60 hover:bg-accent-primary/20 border border-white/10 hover:border-accent-primary/60 rounded-xl text-[14px] text-center transition-all">V.2 Pinkblue</a>
+                <a href="https://dd3.cozyw75.workers.dev/" target="_blank" class="block w-full p-3 bg-black/60 hover:bg-accent-primary/20 border border-white/10 hover:border-accent-primary/60 rounded-xl text-[14px] text-center transition-all">V.3 Dd3</a>
+                <a href="https://jugame.cozyw75.workers.dev/" target="_blank" class="block w-full p-3 bg-black/60 hover:bg-accent-primary/20 border border-white/10 hover:border-accent-primary/60 rounded-xl text-[14px] text-center transition-all">V.4 Jugame</a>
+                <a href="https://moonpink.cozyw75.workers.dev/" target="_blank" class="block w-full p-3 bg-black/60 hover:bg-accent-primary/20 border border-white/10 hover:border-accent-primary/60 rounded-xl text-[14px] text-center transition-all">V.5 Moonpink</a>
+                <a href="https://shiny-thunder-d71e.cozyw75.workers.dev/" target="_blank" class="block w-full p-3 bg-black/60 hover:bg-accent-primary/20 border border-white/10 hover:border-accent-primary/60 rounded-xl text-[14px] text-center transition-all">V.6 Shiny Thunder</a>
+                <a href="https://blue.cozyw75.workers.dev/" target="_blank" class="block w-full p-3 bg-black/60 hover:bg-accent-primary/20 border border-white/10 hover:border-accent-primary/60 rounded-xl text-[14px] text-center transition-all">V.7 Blue</a>
+                <a href="https://lix.cozyw75.workers.dev/" target="_blank" class="block w-full p-3 bg-black/60 hover:bg-accent-primary/20 border border-white/10 hover:border-accent-primary/60 rounded-xl text-[14px] text-center transition-all">V.8 Lix</a>
+            </div>
+        </div>
+
+        <!-- Modal: โทนพาสเทล -->
+        <div id="modal-pastel" class="modal-content hidden w-full max-w-sm bg-dark-card border border-accent-white/30 rounded-3xl overflow-hidden shadow-glow-primary relative" onclick="event.stopPropagation()">
+             <div class="bg-gradient-to-r from-accent-primary/10 to-accent-white/10 p-5 border-b border-accent-white/20 flex justify-between items-center">
+                <h3 class="text-xl text-accent-white flex items-center gap-2 font-medium">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                    โทนพาสเทล
+                </h3>
+                <button onclick="closeAllModals()" class="text-white hover:text-accent-primary transition-colors"><svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
+            </div>
+            <div class="p-5 space-y-3 max-h-[65vh] overflow-y-auto custom-scroll">
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <a href="https://wish-uwu.cozyw75.workers.dev/" target="_blank" class="block w-full p-2.5 bg-black/60 hover:bg-accent-white/20 border border-white/10 hover:border-accent-white/50 rounded-xl text-[13px] text-center transition-all truncate">V.1 Wish-uwu</a>
+                    <a href="https://regal-torrone-46c94f.netlify.app/" target="_blank" class="block w-full p-2.5 bg-black/60 hover:bg-accent-white/20 border border-white/10 hover:border-accent-white/50 rounded-xl text-[13px] text-center transition-all truncate">V.2 Regal</a>
+                    <a href="https://cawaei.cozyw75.workers.dev/" target="_blank" class="block w-full p-2.5 bg-black/60 hover:bg-accent-white/20 border border-white/10 hover:border-accent-white/50 rounded-xl text-[13px] text-center transition-all truncate">V.3 Cawaei</a>
+                    <a href="https://meww.cozyw75.workers.dev/" target="_blank" class="block w-full p-2.5 bg-black/60 hover:bg-accent-white/20 border border-white/10 hover:border-accent-white/50 rounded-xl text-[13px] text-center transition-all truncate">V.4 Meww</a>
+                    <a href="https://duduw.cozyw75.workers.dev/" target="_blank" class="block w-full p-2.5 bg-black/60 hover:bg-accent-white/20 border border-white/10 hover:border-accent-white/50 rounded-xl text-[13px] text-center transition-all truncate">V.5 Duduw</a>
+                    <a href="https://pinks.cozyw75.workers.dev/" target="_blank" class="block w-full p-2.5 bg-black/60 hover:bg-accent-white/20 border border-white/10 hover:border-accent-white/50 rounded-xl text-[13px] text-center transition-all truncate">V.6 Pinks</a>
+                    <a href="https://small-wind-001f.cozyw75.workers.dev/" target="_blank" class="block w-full p-2.5 bg-black/60 hover:bg-accent-white/20 border border-white/10 hover:border-accent-white/50 rounded-xl text-[13px] text-center transition-all truncate">V.7 Small wind</a>
+                    <a href="https://sweetie.cozyw75.workers.dev/" target="_blank" class="block w-full p-2.5 bg-black/60 hover:bg-accent-white/20 border border-white/10 hover:border-accent-white/50 rounded-xl text-[13px] text-center transition-all truncate">V.8 Sweetie</a>
+                    <a href="https://pmju.cozyw75.workers.dev/" target="_blank" class="block w-full p-2.5 bg-black/60 hover:bg-accent-white/20 border border-white/10 hover:border-accent-white/50 rounded-xl text-[13px] text-center transition-all truncate col-span-2">V.9 Pmju</a>
+                </div>
+                
+                <div class="h-[2px] w-full bg-white/10 my-3 rounded-full"></div>
+                
+                <div class="space-y-3">
+                    <a href="https://greenone.cozyw75.workers.dev/" target="_blank" class="block w-full p-3.5 bg-black/60 hover:bg-accent-primary/20 border border-white/10 hover:border-accent-primary/60 rounded-xl text-[14px] flex justify-between transition-all"><span><span class="text-accent-primary font-bold">V.10</span> สีเขียว</span> <svg class="w-5 h-5 text-accent-white/50" fill="currentColor" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
+                    <a href="https://bluetwo.cozyw75.workers.dev/" target="_blank" class="block w-full p-3.5 bg-black/60 hover:bg-accent-primary/20 border border-white/10 hover:border-accent-primary/60 rounded-xl text-[14px] flex justify-between transition-all"><span><span class="text-accent-primary font-bold">V.11</span> สีฟ้า</span> <svg class="w-5 h-5 text-accent-white/50" fill="currentColor" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
+                    <a href="https://grreenn.cozyw75.workers.dev/" target="_blank" class="block w-full p-3.5 bg-black/60 hover:bg-accent-primary/20 border border-white/10 hover:border-accent-primary/60 rounded-xl text-[14px] flex justify-between transition-all"><span><span class="text-accent-primary font-bold">V.12</span> สีเขียว</span> <svg class="w-5 h-5 text-accent-white/50" fill="currentColor" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
+                    <a href="https://tikket.cozyw75.workers.dev/" target="_blank" class="block w-full p-3.5 bg-black/60 hover:bg-accent-orange/20 border border-white/10 hover:border-accent-orange/60 rounded-xl text-[14px] flex justify-between transition-all text-accent-orange"><span><span class="font-bold">V.13</span> ตั๋วเครื่องบิน</span> <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const backdrop = document.getElementById('modal-backdrop');
+        const modals = ['modal-sodsai', 'modal-dark', 'modal-pastel'];
+
+        function openModal(id) {
+            modals.forEach(mId => document.getElementById(mId).classList.add('hidden'));
+            const target = document.getElementById(id);
+            if (target) {
+                target.classList.remove('hidden');
+                backdrop.classList.add('active');
+                setTimeout(() => {
+                    backdrop.style.opacity = '1';
+                }, 10);
+            }
+        }
+
+        function closeAllModals(e) {
+            if (e && e.target !== backdrop) return;
+            backdrop.classList.remove('active');
+            setTimeout(() => {
+                modals.forEach(mId => document.getElementById(mId).classList.add('hidden'));
+            }, 300);
+        }
+    </script>
+</body>
+</html>
